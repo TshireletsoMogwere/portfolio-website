@@ -1,0 +1,483 @@
+.project<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tshireletso Mogwere | Web Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'dark': {
+              50: '#e2e8f0',
+              100: '#94a3b8',
+              200: '#334155',
+              300: '#16213e',
+              400: '#1a1a2e',
+              500: '#0a0a0f',
+            },
+            'primary': {
+              400: '#a78bfa',
+              500: '#8b5cf6',
+              600: '#7c3aed',
+            },
+            'accent': '#06b6d4',
+          },
+          backgroundImage: {
+            'gradient-primary': 'linear-gradient(135deg, #8b5cf6, #06b6d4)',
+            'gradient-dark': 'linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%)',
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.6s ease forwards',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(30px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    .text-gradient {
+      background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .grain-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.02"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .project-card:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .project-card:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  </style>
+</head>
+<body class="font-sans bg-dark-500 text-dark-50 scroll-smooth">
+ <header class="py-16 sm:py-20 lg:py-24 flex items-center bg-gradient-dark relative overflow-hidden grain-bg">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+    <div class="flex flex-col items-center text-center space-y-8 relative z-10">
+      <div class="order-2 lg:order-1">
+        <img 
+          src="./images/Tshireletso T Mogwere - Web Developer 4.jpg" 
+          alt="Tshireletso Mogwere" 
+          class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 rounded-full object-cover border-4 border-primary-500 shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-primary-500/40 mx-auto"
+        />
+      </div>
+      <div class="order-1 lg:order-2 space-y-6">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gradient">
+          Tshireletso Mogwere
+        </h1>
+        <p class="text-base sm:text-lg lg:text-xl text-primary-400 font-medium">
+          Web Developer
+        </p>
+        <nav class="order-3">
+          <ul class="flex justify-center gap-3 sm:gap-4 flex-wrap">
+            <li>
+              <a href="#about" class="text-dark-50 font-medium text-sm sm:text-base px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-primary-500 transition-all duration-300">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#projects" class="text-dark-50 font-medium text-sm sm:text-base px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-primary-500 transition-all duration-300">
+                Projects
+              </a>
+            </li>
+            <li>
+              <a href="#contact" class="text-dark-50 font-medium text-sm sm:text-base px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-primary-500 transition-all duration-300">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+  <main>
+    <section id="about" class="py-24 bg-dark-400">
+      <div class="container mx-auto px-8 max-w-4xl text-center">
+        <h2 class="text-4xl md:text-5xl font-semibold text-white mb-4 relative">
+          About Me
+          <span class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-4 h-1 w-20 bg-gradient-primary rounded-full"></span>
+        </h2>
+        <div class="mt-12 space-y-6">
+          <p class="text-dark-100 text-xl leading-relaxed">
+            I'm a passionate web developer with expertise in creating responsive, user-friendly websites and web applications. With a strong foundation in modern front-end technologies and frameworks, I deliver clean, efficient, and scalable solutions that drive business growth.
+          </p>
+          <p class="text-dark-100 text-xl leading-relaxed">
+            My approach combines technical expertise with creative problem-solving to build digital experiences that not only meet business objectives but also delight users. I'm constantly learning and staying updated with the latest web development trends and technologies to deliver cutting-edge solutions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-24 bg-dark-500">
+      <div class="container mx-auto px-8 max-w-6xl">
+        <h2 class="text-4xl md:text-5xl font-semibold text-white mb-16 text-center relative">
+          Featured Projects
+          <span class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-4 h-1 w-20 bg-gradient-primary rounded-full"></span>
+        </h2>
+        <div class="grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-6 mt-12">
+          <!-- AI Quote Generator -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="AI Quote Generator" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">AI Quote Generator</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">React</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">JavaScript</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Tailwind CSS</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="https://aiqoutegenerator.vercel.app" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+                <a 
+                  href="https://github.com/TshireletsoMogwere/ai-quote-generator.git" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- DeliverEase Platform -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="DeliverEase Platform" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">DeliverEase Platform</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">React.js</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Node.js</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">MongoDB</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="https://jozidrop.vercel.app" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+                <a 
+                  href="https://github.com/TshireletsoMogwere/delivery-app.git" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tech Word Scramble Game -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="Tech Word Scramble Game" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">Tech Word Scramble</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">JavaScript</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">HTML5</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">CSS3</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="https://techwordscramble.netlify.app" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Play Game
+                </a>
+                <a 
+                  href="https://github.com/TshireletsoMogwere/Tech_Word_Scramble.git" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Task Management App -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="Task Management App" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">Task Management App</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Vue.js</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Firebase</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Vuetify</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="#" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+                <a 
+                  href="#" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- E-Commerce Dashboard -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="E-Commerce Dashboard" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">E-Commerce Dashboard</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">React</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Express</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">MySQL</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="#" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+                <a 
+                  href="#" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weather Forecast App -->
+          <div class="project-card bg-dark-300 rounded-xl overflow-hidden border border-dark-200 transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:border-primary-500 relative animate-fade-in-up">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-primary"></div>
+            <img 
+              src="/api/placeholder/400/200" 
+              alt="Weather Forecast App" 
+              class="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+            />
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-white mb-3">Weather Forecast App</h3>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">Next.js</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">TypeScript</span>
+                <span class="bg-primary-500/10 text-primary-400 px-3 py-1 rounded-full text-xs font-medium border border-primary-500/20">API</span>
+              </div>
+              <div class="flex gap-3">
+                <a 
+                  href="#" 
+                  class="flex-1 bg-gradient-primary text-white py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Live Demo
+                </a>
+                <a 
+                  href="#" 
+                  class="flex-1 border-2 border-primary-500 text-primary-500 py-2 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white hover:-translate-y-1 text-xs uppercase tracking-wide"
+                  target="_blank"
+                >
+                  Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+<section id="contact" class="py-24 bg-dark-400">
+  <div class="container mx-auto px-8 max-w-4xl">
+    <h2 class="text-4xl md:text-5xl font-semibold text-white mb-16 text-center relative">
+      Let's Work Together
+      <span class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-4 h-1 w-20 bg-gradient-primary rounded-full"></span>
+    </h2>
+    
+    <form 
+      action="https://formsubmit.co/tmogwere09@gmail.com" 
+      method="POST" 
+      class="max-w-2xl mx-auto bg-dark-300 p-12 rounded-xl border border-dark-200"
+    >
+      <!-- FormSubmit Configuration -->
+      <input type="hidden" name="_subject" value="New Portfolio Contact Request">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://tmogwere.vercel.app/thankyou.html">
+      
+      <div class="mb-8">
+        <label for="name" class="block text-dark-50 font-medium mb-2">Full Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="Enter your full name" 
+          required 
+          class="w-full p-4 rounded-lg border-2 border-dark-200 bg-dark-500 text-dark-50 placeholder-dark-100 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10"
+        />
+      </div>
+      
+      <div class="mb-8">
+        <label for="email" class="block text-dark-50 font-medium mb-2">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="Enter your email address" 
+          required 
+          class="w-full p-4 rounded-lg border-2 border-dark-200 bg-dark-500 text-dark-50 placeholder-dark-100 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10"
+        />
+      </div>
+      
+      <div class="mb-8">
+        <label for="message" class="block text-dark-50 font-medium mb-2">Message</label>
+        <textarea 
+          id="message" 
+          name="message" 
+          rows="6" 
+          placeholder="Tell me about your project..." 
+          required 
+          class="w-full p-4 rounded-lg border-2 border-dark-200 bg-dark-500 text-dark-50 placeholder-dark-100 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/10 resize-none"
+        ></textarea>
+      </div>
+      
+      <button 
+        type="submit" 
+        class="w-full bg-gradient-primary text-white py-4 px-8 rounded-lg font-semibold text-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/40 uppercase tracking-wide"
+      >
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+  </main>
+
+  <footer class="bg-dark-500 border-t border-dark-200 py-12">
+    <div class="container mx-auto px-8 text-center">
+      <div class="flex justify-center gap-6 mb-8">
+        <a 
+          href="https://www.linkedin.com/in/tshireletsomogwere/" 
+          target="_blank" 
+          aria-label="LinkedIn"
+          class="w-12 h-12 bg-dark-300 border-2 border-dark-200 rounded-xl flex items-center justify-center transition-all duration-300 hover:border-primary-500 hover:bg-primary-500 hover:-translate-y-1"
+        >
+          <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn" class="w-6 h-6 brightness-0 invert" />
+        </a>
+        <a 
+          href="https://github.com/TshireletsoMogwere" 
+          target="_blank" 
+          aria-label="GitHub"
+          class="w-12 h-12 bg-dark-300 border-2 border-dark-200 rounded-xl flex items-center justify-center transition-all duration-300 hover:border-primary-500 hover:bg-primary-500 hover:-translate-y-1"
+        >
+          <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="w-6 h-6 brightness-0 invert" />
+        </a>
+      </div>
+      <p class="text-dark-100 text-sm">
+        &copy; 2025 Tshireletso Mogwere. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
+
+    // Contact form handling
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      // Create mailto link
+      const subject = `Portfolio Contact from ${name}`;
+      const body = `Hi Tshireletso,\n\n${message}\n\nBest regards,\n${name}\n${email}`;
+      const mailtoLink = `mailto:tmogwere09@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      
+      window.location.href = mailtoLink;
+    });
+
+    // Add scroll effect to header
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.opacity = '0.95';
+      } else {
+        header.style.opacity = '1';
+      }
+    });
+  </script>
+</body>
+</html>
