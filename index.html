@@ -1,1290 +1,819 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tshireletso Mogwere | Web Developer</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
-            colors: {
-              dark: {
-                50: "#f8fafc",
-                100: "#f1f5f9",
-                200: "#e2e8f0",
-                300: "#cbd5e1",
-                400: "#94a3b8",
-                500: "#64748b",
-                600: "#475569",
-                700: "#334155",
-                800: "#1e293b",
-                900: "#0f172a",
-              },
-              primary: {
-                400: "#818cf8",
-                500: "#6366f1",
-                600: "#4f46e5",
-                700: "#4338ca",
-              },
-              accent: {
-                400: "#34d399",
-                500: "#10b981",
-                600: "#059669",
-              },
-            },
-            backgroundImage: {
-              "gradient-primary":
-                "linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%)",
-              "gradient-dark":
-                "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
-              "mesh-gradient":
-                "radial-gradient(at 40% 20%, #6366f1 0px, transparent 50%), radial-gradient(at 80% 0%, #8b5cf6 0px, transparent 50%), radial-gradient(at 0% 50%, #06b6d4 0px, transparent 50%)",
-            },
-            animation: {
-              "fade-in-up": "fadeInUp 0.8s ease forwards",
-              "fade-in-left": "fadeInLeft 0.8s ease forwards",
-              "fade-in-right": "fadeInRight 0.8s ease forwards",
-              "pulse-glow": "pulseGlow 2s infinite",
-              float: "float 6s ease-in-out infinite",
-            },
-            keyframes: {
-              fadeInUp: {
-                "0%": { opacity: "0", transform: "translateY(40px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-              fadeInLeft: {
-                "0%": { opacity: "0", transform: "translateX(-40px)" },
-                "100%": { opacity: "1", transform: "translateX(0)" },
-              },
-              fadeInRight: {
-                "0%": { opacity: "0", transform: "translateX(40px)" },
-                "100%": { opacity: "1", transform: "translateX(0)" },
-              },
-              pulseGlow: {
-                "0%, 100%": { boxShadow: "0 0 20px rgba(99, 102, 241, 0.3)" },
-                "50%": { boxShadow: "0 0 40px rgba(99, 102, 241, 0.6)" },
-              },
-              float: {
-                "0%, 100%": { transform: "translateY(0px)" },
-                "50%": { transform: "translateY(-10px)" },
-              },
-            },
-            boxShadow: {
-              glow: "0 0 20px rgba(99, 102, 241, 0.3)",
-              "glow-lg": "0 0 40px rgba(99, 102, 241, 0.4)",
-            },
-          },
-        },
-      };
-    </script>
-    <style>
-      .text-gradient {
-        background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+</head>
 
-      .glass-effect {
-        background: rgba(15, 23, 42, 0.8);
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .mesh-bg {
-        background: radial-gradient(
-            at 40% 20%,
-            rgba(99, 102, 241, 0.1) 0px,
-            transparent 50%
-          ),
-          radial-gradient(
-            at 80% 0%,
-            rgba(139, 92, 246, 0.1) 0px,
-            transparent 50%
-          ),
-          radial-gradient(
-            at 0% 50%,
-            rgba(6, 182, 212, 0.1) 0px,
-            transparent 50%
-          );
-      }
-
-      .project-card {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .project-card:hover {
-        transform: translateY(-8px) scale(1.02);
-      }
-
-      .skill-badge {
-        transition: all 0.3s ease;
-      }
-
-      .skill-badge:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
-      }
-
-      .nav-link {
-        position: relative;
-        overflow: hidden;
-      }
-
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        transition: width 0.3s ease;
-      }
-
-      .nav-link:hover::after {
-        width: 100%;
-      }
-
-      .section-enter {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease;
-      }
-
-      .section-enter.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    </style>
-  </head>
-
-  <body
-    class="font-sans bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-dark-100 scroll-smooth overflow-x-hidden"
-  >
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div class="text-xl font-bold text-gradient">TM</div>
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#home"
-              class="nav-link text-dark-200 hover:text-white font-medium"
-              >Home</a
-            >
-            <a
-              href="#about"
-              class="nav-link text-dark-200 hover:text-white font-medium"
-              >About</a
-            >
-            <a
-              href="#experience"
-              class="nav-link text-dark-200 hover:text-white font-medium"
-              >Experience</a
-            >
-            <a
-              href="#projects"
-              class="nav-link text-dark-200 hover:text-white font-medium"
-              >Projects</a
-            >
-            <a
-              href="#contact"
-              class="nav-link text-dark-200 hover:text-white font-medium"
-              >Contact</a
-            >
-          </div>
-          <button class="md:hidden text-white">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-        </div>
+<body>
+  <!-- Navigation -->
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <img src="images/logo-t.png" alt="Logo" class="logo-img" />
       </div>
-    </nav>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+
+ <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation menu" aria-expanded="false">
+    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+</button>
+    </div>
+  </nav>
+
 
     <!-- Hero Section -->
-    <section
-      id="home"
-      class="min-h-screen flex items-center mesh-bg relative overflow-hidden"
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-grid">
+             <div class="hero-content">
+
+  <h1 class="hero-title">Tshireletso Mogwere</h1>
+
+  <p class="hero-subtitle">Web Developer</p>
+
+  <p class="hero-description">
+    Crafting scalable web solutions with 1 year 5 months of expertise in modern technologies.
+Passionate about creating intuitive user experiences and delivering clean, efficient code that drives results.
+  </p>
+
+  <div class="social-links">
+    <a href="https://www.linkedin.com/in/tshireletsomogwere/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="https://github.com/TshireletsoMogwere" target="_blank" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="mailto:youremail@example.com" aria-label="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+
+  <div class="hero-buttons">
+    <a
+      href="https://wa.me/yourwhatsappphonenumber"
+      target="_blank"
+      class="whatsapp-btn"
     >
-      <div
-        class=" absolute inset-0 bg-gradient-to-br from-dark-900/90 via-dark-800/80 to-dark-900/90"
-      ></div>
-      <div class="container mx-auto px-6 relative z-10">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div class="space-y-8 animate-fade-in-left">
-            <div class="space-y-4">
-              <p
-                class="text-primary-400 font-medium text-lg tracking-wide mt-20"
-              >
-                Web Developer
-              </p>
-              <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
-                Tshireletso
-              </h1>
-              <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
-                Mogwere
-              </h1>
-              <p class="text-xl text-dark-300 leading-relaxed max-w-2xl">
-                Crafting scalable web solutions with 1 year 5 months of
-                expertise in modern technologies.
-              </p>
-            </div>
+      <i class="fab fa-whatsapp"></i>WhatsApp
+    </a>
+    <a href="#contact" class="secondary-btn">Let's Connect</a>
+  </div>
+</div>
 
-            <div class="flex flex-wrap gap-4">
-              <a
-                href="#projects"
-                class="px-8 py-4 bg-gradient-primary text-white font-semibold rounded-xl hover:shadow-glow-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                View My Work
-              </a>
-              <a
-                href="#contact"
-                class="px-8 py-4 border-2 border-primary-500 text-primary-400 font-semibold rounded-xl hover:bg-primary-500 hover:text-white transition-all duration-300 hover:-translate-y-1"
-              >
-                Let's Connect
-              </a>
-            </div>
 
-            <div class="flex items-center space-x-6 pt-8">
-              <div class="text-center">
-                <div class="text-3xl font-bold text-white">1+</div>
-                <div class="text-sm text-dark-400">Years Experience</div>
-              </div>
-              <div class="w-px h-12 bg-dark-600"></div>
-              <div class="text-center">
-                <div class="text-3xl font-bold text-white">3+</div>
-                <div class="text-sm text-dark-400">Projects Completed</div>
-              </div>
+                <div class="hero-image-container">
+                    <div class="hero-image-wrapper">
+                        <img src="./images/Tshireletso T Mogwere - Web Developer 4.jpg" alt="Tshireletso Mogwere" class="hero-image" />
+                        <div class="hero-image-glow"></div>
+                    </div>
+                    <div class="hero-floating-element top-right"></div>
+                    <div class="hero-floating-element bottom-left"></div>
+                </div>
             </div>
-          </div>
-
-          <div class="relative animate-fade-in-right">
-            <div class="relative z-10">
-              <img
-                src="./images/Tshireletso T Mogwere - Web Developer 4.jpg"
-                alt="Tshireletso Mogwere"
-                class="w-96 h-96 object-cover rounded-2xl shadow-2xl animate-float"
-              />
-              <div
-                class="absolute -inset-4 bg-gradient-primary rounded-2xl opacity-20 animate-pulse-glow"
-              ></div>
-            </div>
-
-            <!-- Floating elements -->
-            <div
-              class="absolute -top-4 -right-4 w-20 h-20 bg-primary-500/20 rounded-full blur-xl animate-pulse"
-            ></div>
-            <div
-              class="absolute -bottom-8 -left-8 w-32 h-32 bg-accent-500/20 rounded-full blur-xl animate-pulse delay-1000"
-            ></div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-24 bg-dark-800/50 section-enter">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto text-center space-y-16">
-          <div class="space-y-6">
-            <h2 class="text-4xl lg:text-5xl font-bold text-white">
-              About <span class="text-gradient">Me</span>
-            </h2>
-            <div
-              class="w-24 h-1 bg-gradient-primary rounded-full mx-auto"
-            ></div>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-12 text-left">
-            <div class="space-y-6">
-              <h3 class="text-2xl font-semibold text-white">My Journey</h3>
-              <p class="text-dark-300 leading-relaxed">
-                I'm a software developer with 1 year and 5 months of experience.
-                I started learning because I was curious about how websites work
-                and wanted to create things that people can actually use. Since
-                then, I've worked on different projects, including an e-commerce
-                and a recipe web application, where I helped build both the
-                front and back ends. Each project has taught me something new
-                whether it's how to connect to a database, make a user-friendly
-                design, or fix errors that took hours to figure out.
-              </p>
-              <p class="text-dark-300 leading-relaxed">
-                I enjoy solving problems, learning by doing, and seeing my ideas
-                come to life on screen. I'm still growing and learning every
-                day, and I'm excited to keep building, improving, and creating
-                better websites as I move forward in this journey.
-              </p>
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About <span class="text-gradient">Me</span></h2>
+                <div class="section-divider"></div>
             </div>
 
-            <div class="space-y-6">
-              <h3 class="text-2xl font-semibold text-white">Core Values</h3>
-              <div class="space-y-4">
-                <div class="flex items-start space-x-3">
-                  <div class="w-2 h-2 bg-primary-500 rounded-full mt-2"></div>
-                  <div>
-                    <h4 class="text-white font-medium">Quality First</h4>
-                    <p class="text-dark-400 text-sm">
-                      Every line of code is crafted with precision and attention
-                      to detail.
+            <div class="about-grid">
+                <div class="about-column">
+                    <h3 class="about-subtitle">My Journey</h3>
+                    <p class="about-text">
+                        I'm a software developer with 1 year and 5 months of experience. I started learning because I was curious about how websites work and wanted to create things that people can actually use. Since then, I've worked on different projects, including an e-commerce and a recipe web application, where I helped build both the front and back ends.
                     </p>
-                  </div>
-                </div>
-                <div class="flex items-start space-x-3">
-                  <div class="w-2 h-2 bg-accent-500 rounded-full mt-2"></div>
-                  <div>
-                    <h4 class="text-white font-medium">Continuous Learning</h4>
-                    <p class="text-dark-400 text-sm">
-                      Staying ahead with the latest technologies and
-                      methodologies.
+                    <p class="about-text">
+                        I enjoy solving problems, learning by doing, and seeing my ideas come to life on screen. I'm still growing and learning every day, and I'm excited to keep building, improving, and creating better websites as I move forward in this journey.
                     </p>
-                  </div>
                 </div>
-                <div class="flex items-start space-x-3">
-                  <div class="w-2 h-2 bg-primary-400 rounded-full mt-2"></div>
-                  <div>
-                    <h4 class="text-white font-medium">Collaboration</h4>
-                    <p class="text-dark-400 text-sm">
-                      Building great products through effective teamwork and
-                      communication.
-                    </p>
-                  </div>
+
+                <div class="about-column">
+                    <h3 class="about-subtitle">Core Values</h3>
+                    <div class="values-list">
+                        <div class="value-item">
+                            <div class="value-bullet primary"></div>
+                            <div>
+                                <h4 class="value-title">Quality First</h4>
+                                <p class="value-description">
+                                    Every line of code is crafted with precision and attention to detail.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-bullet accent"></div>
+                            <div>
+                                <h4 class="value-title">Continuous Learning</h4>
+                                <p class="value-description">
+                                    Staying ahead with the latest technologies and methodologies.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-bullet secondary"></div>
+                            <div>
+                                <h4 class="value-title">Collaboration</h4>
+                                <p class="value-description">
+                                    Building great products through effective teamwork and communication.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Experience & Skills Section -->
-    <section id="experience" class="py-24 bg-dark-900/50 section-enter">
-      <div class="container mx-auto px-6">
-        <div class="max-w-6xl mx-auto">
-          <div class="text-center space-y-6 mb-16">
-            <h2 class="text-4xl lg:text-5xl font-bold text-white">
-              Experience & <span class="text-gradient">Skills</span>
-            </h2>
-            <div
-              class="w-24 h-1 bg-gradient-primary rounded-full mx-auto"
-            ></div>
-          </div>
-
-          <!-- Technical Skills -->
-          <div class="mb-20">
-            <h3 class="text-2xl font-semibold text-white mb-8 text-center">
-              Technical Expertise
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🟨</div>
-                <div class="text-white font-medium text-sm">JavaScript</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">⚛️</div>
-                <div class="text-white font-medium text-sm">React</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🎨</div>
-                <div class="text-white font-medium text-sm">Tailwind</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">▲</div>
-                <div class="text-white font-medium text-sm">Vercel</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">💾</div>
-                <div class="text-white font-medium text-sm">MySQL</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🔥</div>
-                <div class="text-white font-medium text-sm">NoSQL</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🔗</div>
-                <div class="text-white font-medium text-sm">API</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🟢</div>
-                <div class="text-white font-medium text-sm">Node.js</div>
-                <div class="text-primary-400 text-xs">Intermediate</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">📱</div>
-                <div class="text-white font-medium text-sm">Next.js</div>
-                <div class="text-primary-400 text-xs">Beginner</div>
-              </div>
-              <div
-                class="skill-badge bg-dark-700/50 border border-dark-600 rounded-xl p-4 text-center glass-effect"
-              >
-                <div class="text-2xl mb-2">🔧</div>
-                <div class="text-white font-medium text-sm">Express</div>
-                <div class="text-primary-400 text-xs">Beginner</div>
-              </div>
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience & <span class="text-gradient">Skills</span></h2>
+                <div class="section-divider"></div>
             </div>
-          </div>
 
-          <!-- Experience Timeline -->
-          <div class="space-y-8">
-            <h3 class="text-2xl font-semibold text-white mb-8 text-center">
-              Professional Journey
-            </h3>
-            <div class="space-y-8">
-              <div class="flex items-start space-x-6">
-                <div
-                  class="flex-shrink-0 w-12 h-12 bg-gradient-primary rounded-full flex items-center justify-center"
-                >
-                  <div class="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div class="glass-effect rounded-xl p-6 flex-1">
-                  <div
-                    class="flex flex-col md:flex-row md:items-center md:justify-between mb-3"
-                  >
-                    <h4 class="text-xl font-semibold text-white">
-                      Web Developer
-                    </h4>
-                    <span class="text-primary-400 font-medium">Present</span>
-                  </div>
-                  <p class="text-dark-300">
-                    Currently developing modern, responsive web applications
-                    using React and related technologies. Building intuitive
-                    user interfaces, integrating with backend APIs, and
-                    optimizing for performance and accessibility. Collaborating
-                    with cross-functional teams to deliver scalable,
-                    maintainable, and user-focused solutions that meet business
-                    needs.
-                  </p>
-                </div>
-              </div>
+            <!-- Technical Skills -->
+            <!-- Skills Section -->
+<div class="skills-section">
+  <h3 class="skills-title">Technical Expertise</h3>
 
-              <div class="flex items-start space-x-6">
-                <div
-                  class="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-accent-500 to-primary-400 rounded-full flex items-center justify-center"
-                >
-                  <div class="w-4 h-4 bg-white rounded-full"></div>
-                </div>
-                <div class="glass-effect rounded-xl p-6 flex-1">
-                  <div
-                    class="flex flex-col md:flex-row md:items-center md:justify-between mb-3"
-                  >
-                    <h4 class="text-xl font-semibold text-white">
-                      Software Developer
-                    </h4>
-                    <span class="text-primary-400 font-medium">2024</span>
-                  </div>
-                  <p class="text-dark-300">
-                    Designed, developed, and maintained full-stack software
-                    solutions using JavaScript, React, Node.js, and NoSQL.
-                    Responsible for building robust backend services, optimizing
-                    database interactions, and implementing efficient business
-                    logic. Ensured code quality through testing and version
-                    control, contributing to end-to-end application development.
-                  </p>
-                </div>
-              </div>
+  <div class="skills-row-container" id="skillsRow">
+    <div class="skills-row">
+      <div class="skill-card">🟨<div class="skill-name">JavaScript</div></div>
+      <div class="skill-card">⚛️<div class="skill-name">React</div></div>
+      <div class="skill-card">🎨<div class="skill-name">Tailwind</div></div>
+      <div class="skill-card">▲<div class="skill-name">Vercel</div></div>
+      <div class="skill-card">💾<div class="skill-name">MySQL</div></div>
+      <div class="skill-card">🔥<div class="skill-name">NoSQL</div></div>
+      <div class="skill-card">🔗<div class="skill-name">API</div></div>
+      <div class="skill-card">🟢<div class="skill-name">Node.js</div></div>
+      <div class="skill-card">📱<div class="skill-name">Next.js</div></div>
+      <div class="skill-card">🔧<div class="skill-name">Express</div></div>
+    </div>
+  </div>
+</div>
+
+
+            <!-- Experience Timeline -->
+            <div class="timeline-section">
+                <h3 class="timeline-title">Professional Journey</h3>
+            <div class="timeline-row">
+  <!-- Past Experience -->
+  <div class="timeline-box past">
+    <div class="timeline-content">
+      <h4 class="timeline-position">Software Developer</h4>
+      <span class="timeline-date">2024</span>
+      <p class="timeline-description">
+        Designed and developed full-stack solutions using JavaScript, React, and Node.js.
+      </p>
+    </div>
+  </div>
+
+  <!-- Connector -->
+  <div class="timeline-connector"></div>
+
+  <!-- Present Experience -->
+  <div class="timeline-box present">
+    <div class="timeline-content">
+      <h4 class="timeline-position">Web Developer</h4>
+      <span class="timeline-date">Feb 2025 - Present</span>
+      <p class="timeline-description">
+        Currently developing modern, responsive web apps using React and optimizing performance and accessibility.
+      </p>
+    </div>
+  </div>
+</div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-number">1+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-number">3+</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+  </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-24 bg-dark-800/30 section-enter">
-      <div class="container mx-auto px-6">
-        <div class="max-w-7xl mx-auto">
-          <div class="text-center space-y-6 mb-16">
-            <h2 class="text-4xl lg:text-5xl font-bold text-white">
-              Featured <span class="text-gradient">Projects</span>
-            </h2>
-            <div
-              class="w-24 h-1 bg-gradient-primary rounded-full mx-auto"
-            ></div>
-            <p class="text-xl text-dark-300 max-w-3xl mx-auto">
-              A showcase of my recent work demonstrating expertise in modern web
-              technologies and problem-solving capabilities.
-            </p>
-          </div>
-
-          <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-8">
-            <!-- Landing Page -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/mycompany.png"
-                  alt="Digital Landing Page"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    Digital Landing Page
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-                  Modern, responsive landing page featuring advanced animations,
-                  performance optimizations, and conversion-focused design
-                  patterns.
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured <span class="text-gradient">Projects</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    A showcase of my recent work demonstrating expertise in modern web technologies and problem-solving capabilities.
                 </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >HTML5</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Tailwind CSS</span
-                  >
-                </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://landingpagetm.vercel.app/"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/landing-page"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
-                </div>
-              </div>
             </div>
 
-            <!-- Queue Number System -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/QNS.png"
-                  alt="Queue Number System"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    Queue Number System
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-                  A System designed to streamline service management by
-                  efficiently organizing customer flow and reducing wait times.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >React</span
-                  >
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/mycompany.png" alt="Digital Landing Page" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Digital Landing Page</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Modern, responsive landing page featuring advanced animations, performance optimizations, and conversion-focused design patterns.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">HTML5</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Tailwind CSS</span>
+                        </div>
+                                <div class="project-buttons">
+                        <a href="https://landingpagetm.vercel.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                            <!-- External Link Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                            </svg>
+                            Live Demo
+                        </a>
+                        <a href="https://github.com/TshireletsoMogwere/landing-page" target="_blank" class="project-btn" aria-label="Source Code">
+                            <!-- GitHub Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                           Source Code
+                        </a>
+                        </div>
 
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Tailwind</span
-                  >
+
+                    </div>
                 </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://queue-number-system.vercel.app"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/Queue_Number_System"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/QNS.png" alt="Queue Number System" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Queue Number System</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            A System designed to streamline service management by efficiently organizing customer flow and reducing wait times.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+                        <div class="project-buttons">
+                        <a href="https://queue-number-system.vercel.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                            <!-- External Link Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                            </svg>
+                            <span>Live Demo</span>
+                        </a>
+                        <a href="https://github.com/TshireletsoMogwere/Queue_Number_System" target="_blank" class="project-btn" aria-label="Source Code">
+                            <!-- GitHub Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                            <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            <span>Source Code</span>
+                        </a>
+                        </div>
+
+
+
+                    </div>
                 </div>
-              </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/Ai quote.png" alt="AI Quote Generator" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">AI Quote Generator</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            AI-powered application generating inspirational quotes with advanced API integration, state management, and responsive design patterns.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">AI API</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+                            <div class="project-buttons">
+                            <a href="https://aiqoutegenerator.vercel.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                                <!-- External Link Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                                </svg>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="https://github.com/TshireletsoMogwere/ai-quote-generator" target="_blank" class="project-btn" aria-label="Source Code">
+                                <!-- GitHub Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                <span>Source Code</span>
+                            </a>
+                            </div>
+
+
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/digitizemart.png" alt="DigitizeMart E-Commerce" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">DigitizeMart Store</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Scalable e-commerce with advanced product filtering, pagination, image gallery/carousel and product detailed view.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Next</span>
+                            <span class="tag">React</span>
+                            <span class="tag">API</span>
+                            <span class="tag">Tailwind</span>
+                        </div>
+                            <div class="project-buttons">
+                            <a href="https://digitizemart.vercel.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                                <!-- External Link Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                                </svg>
+                                <span>Live Demo</span>
+                            </a>
+                            <a href="https://github.com/TshireletsoMogwere/e-commerce" target="_blank" class="project-btn" aria-label="Source Code">
+                                <!-- GitHub Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                <span>Source Code</span>
+                            </a>
+                            </div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/TWS.png" alt="Tech Word Scramble Game" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">Tech Word Scramble</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            A tech-themed word scramble game featuring only technology-related terms, with dynamic scoring and progress saved via local storage.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">Game Logic</span>
+                        </div>
+                <div class="project-buttons">
+                <a href="https://techwordscramble.netlify.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                    <!-- External Link Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                    </svg>
+                    <span>Play Game</span>
+                </a>
+                <a href="https://github.com/TshireletsoMogwere/Tech_Word_Scramble" target="_blank" class="project-btn" aria-label="Source Code">
+                    <!-- GitHub Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                    <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    <span>Source Code</span>
+                </a>
+                </div>
+
+
+
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card">
+                    <div class="project-image-container">
+                        <img src="./images/JD.png" alt="JoziDrop" class="project-image" />
+                        <div class="project-image-overlay"></div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3 class="project-title">JoziDrop</h3>
+                            <div class="project-indicators">
+                                <span class="indicator accent"></span>
+                                <span class="indicator primary"></span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            A delivery app that uses taxi services for fast and efficient local deliveries. It features real-time tracking and simple order scheduling.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Tailwind</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Node.js</span>
+                        </div>
+                    <div class="project-buttons">
+                    <a href="https://jozidrop.vercel.app" target="_blank" class="project-btn" aria-label="Live Demo">
+                        <!-- External Link Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 3h7m0 0v7m0-7L10 14m-4 4h7a2 2 0 002-2v-7"/>
+                        </svg>
+                        <span>Live Demo</span>
+                    </a>
+                    <a href="https://github.com/TshireletsoMogwere/Tech_Word_Scramble" target="_blank" class="project-btn" aria-label="Source Code">
+                        <!-- GitHub Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path d="M8 0C3.58 0 0 3.58 0 8a8.004 8.004 0 005.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.11 0 0 .67-.21 2.2.82a7.63 7.63 0 012 0c1.53-1.03 2.2-.82 2.2-.82.44 1.1.16 1.91.08 2.11.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.004 8.004 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        <span>Source Code</span>
+                    </a>
+                    </div>
+
+
+                    </div>
+                </div>
             </div>
-
-              <!-- AI Quote Generator -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/Ai quote.png"
-                  alt="AI Quote Generator"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    AI Quote Generator
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-                  AI-powered application generating inspirational quotes with
-                  advanced API integration, state management, and responsive
-                  design patterns.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >React</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >AI API</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Tailwind</span
-                  >
-                </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://aiqoutegenerator.vercel.app"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/ai-quote-generator"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-
-            <!-- E-Commerce -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/digitizemart.png"
-                  alt="DigitizeMart E-Commerce"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    DigitizeMart Store
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-                  Scalable e-commerce with advanced product filtering,
-                  pagination, image gallery/carousel and product detailed view.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Next</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >React</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >API</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Tailwind</span
-                  >
-                </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://digitizemart.vercel.app"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/e-commerce"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-          
-            <!-- Tech Word Scramble -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/TWS.png"
-                  alt="Tech Word Scramble Game"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    Tech Word Scramble
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-                
-
-A tech-themed word scramble game featuring only technology-related terms, with dynamic scoring, progress saved via local storage, and an engaging user experience.
-
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >HTML</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >CSS</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Game Logic</span
-                  >
-                </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://techwordscramble.netlify.app"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Play Game
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/Tech_Word_Scramble"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Delivery App -->
-            <div
-              class="project-card glass-effect rounded-2xl overflow-hidden border border-dark-600"
-            >
-              <div class="relative overflow-hidden">
-                <img
-                  src="./images/JD.png"
-                  alt="JoziDrop"
-                  class="w-full h-56 object-cover transition-all duration-500 hover:scale-110"
-                />
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-dark-900/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </div>
-              <div class="p-6 space-y-4">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-xl font-bold text-white">
-                    JoziDrop
-                  </h3>
-                  <div class="flex space-x-2">
-                    <span class="w-3 h-3 bg-accent-500 rounded-full"></span>
-                    <span class="w-3 h-3 bg-primary-500 rounded-full"></span>
-                  </div>
-                </div>
-                <p class="text-dark-300 text-sm leading-relaxed">
-          A delivery app that uses taxi services for fast and efficient local deliveries. It features real-time tracking, simple order scheduling, and a clean, user-friendly interface.
-                </p>
-                <div class="flex flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >JavaScript</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >React</span
-                  >
-                   <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Tailwind</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >MySQL</span
-                  >
-                  <span
-                    class="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-xs font-medium border border-primary-500/30"
-                    >Node.js</span
-                  >
-                </div>
-                <div class="flex space-x-3 pt-4">
-                  <a
-                    href="https://jozidrop.vercel.app"
-                    target="_blank"
-                    class="flex-1 bg-gradient-primary text-white py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:shadow-glow text-sm"
-                  >
-                    Live Demo
-                  </a>
-                  <a
-                    href="https://github.com/TshireletsoMogwere/Tech_Word_Scramble"
-                    target="_blank"
-                    class="flex-1 border-2 border-primary-500 text-primary-400 py-3 px-4 rounded-lg font-semibold text-center transition-all duration-300 hover:bg-primary-500 hover:text-white text-sm"
-                  >
-                    Source Code
-                  </a>
-                </div>
-              </div>
-            </div>
-
-
-   
-</div>
+        </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-dark-900/70 section-enter">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto">
-          <div class="text-center space-y-6 mb-16">
-            <h2 class="text-4xl lg:text-5xl font-bold text-white">
-              Let's <span class="text-gradient">Collaborate</span>
-            </h2>
-            <div
-              class="w-24 h-1 bg-gradient-primary rounded-full mx-auto"
-            ></div>
-            <p class="text-xl text-dark-300 max-w-2xl mx-auto">
-              Ready to bring your next project to life? Let's discuss how we can
-              work together to create something exceptional.
-            </p>
-          </div>
-
-          <div class="grid md:grid-cols-2 gap-12">
-            <!-- Contact Info -->
-            <div class="space-y-8">
-              <div class="space-y-6">
-                <h3 class="text-2xl font-semibold text-white">Get In Touch</h3>
-                <p class="text-dark-300 leading-relaxed">
-                  I'm always interested in new opportunities, challenging
-                  projects, and collaborating with talented teams. Whether
-                  you're looking for a web developer for your team or need
-                  consultation on a project, I'd love to hear from you.
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's <span class="text-gradient">Collaborate</span></h2>
+                <div class="section-divider"></div>
+                <p class="section-subtitle">
+                    Ready to bring your next project to life? Let's discuss how we can work together to create something exceptional.
                 </p>
-              </div>
-
-              <div class="space-y-4">
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-6 h-6 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-white font-medium">Email</div>
-                    <div class="text-dark-300">tmogwere09@gmail.com</div>
-                  </div>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                  <div
-                    class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-6 h-6 text-white"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="text-white font-medium">Availability</div>
-                    <div class="text-accent-400">Open to opportunities</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Social Links -->
-              <div class="flex space-x-4 pt-6">
-                <a
-                  href="https://www.linkedin.com/in/tshireletsomogwere/"
-                  target="_blank"
-                  class="w-12 h-12 bg-dark-700 border border-dark-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary-500 hover:border-primary-500 hover:-translate-y-1"
-                >
-                  <img
-                    src="https://www.svgrepo.com/show/448234/linkedin.svg"
-                    alt="LinkedIn"
-                    class="w-6 h-6 brightness-0 invert"
-                  />
-                </a>
-                <a
-                  href="https://github.com/TshireletsoMogwere"
-                  target="_blank"
-                  class="w-12 h-12 bg-dark-700 border border-dark-600 rounded-xl flex items-center justify-center transition-all duration-300 hover:bg-primary-500 hover:border-primary-500 hover:-translate-y-1"
-                >
-                  <img
-                    src="https://www.svgrepo.com/show/512317/github-142.svg"
-                    alt="GitHub"
-                    class="w-6 h-6 brightness-0 invert"
-                  />
-                </a>
-              </div>
             </div>
 
-            <!-- Contact Form -->
-            <div class="glass-effect rounded-2xl p-8 border border-dark-600">
-              <form
-                action="https://formsubmit.co/tmogwere09@gmail.com"
-                method="POST"
-                class="space-y-6"
-              >
-                <!-- FormSubmit Configuration -->
-                <input
-                  type="hidden"
-                  name="_subject"
-                  value="Web Developer Inquiry - Portfolio Contact"
-                />
-                <input type="hidden" name="_captcha" value="false" />
-                <input
-                  type="hidden"
-                  name="_next"
-                  value="https://tmogwere.vercel.app/thankyou.html"
-                />
+            <div class="contact-grid">
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-content">
+                        <h3 class="info-title">Get In Touch</h3>
+                        <p class="info-description">
+                            I'm always interested in new opportunities, challenging projects, and collaborating with talented teams. Whether you're looking for a web developer for your team or need consultation on a project, I'd love to hear from you.
+                        </p>
+                    </div>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label for="name" class="block text-white font-medium mb-2"
-                      >Full Name</label
-                    >
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      placeholder="Your full name"
-                      required
-                      class="w-full p-4 rounded-lg border border-dark-600 bg-dark-800/50 text-white placeholder-dark-400 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                    />
-                  </div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon primary">
+                                <svg viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">tmogwere09@gmail.com</div>
+                            </div>
+                        </div>
 
-                  <div>
-                    <label for="email" class="block text-white font-medium mb-2"
-                      >Email Address</label
-                    >
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="your.email@example.com"
-                      required
-                      class="w-full p-4 rounded-lg border border-dark-600 bg-dark-800/50 text-white placeholder-dark-400 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                    />
-                  </div>
+                        <div class="contact-item">
+                            <div class="contact-icon primary">
+                                <svg viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label">Availability</div>
+                                <div class="contact-value accent">Open to opportunities</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/tshireletsomogwere/" target="_blank" class="social-link">
+                            <img src="https://www.svgrepo.com/show/448234/linkedin.svg" alt="LinkedIn" class="social-icon" />
+                        </a>
+                        <a href="https://github.com/TshireletsoMogwere" target="_blank" class="social-link">
+                            <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub" class="social-icon" />
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                  <label for="subject" class="block text-white font-medium mb-2"
-                    >Subject</label
-                  >
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    placeholder="Project discussion, job opportunity, consultation..."
-                    required
-                    class="w-full p-4 rounded-lg border border-dark-600 bg-dark-800/50 text-white placeholder-dark-400 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
-                  />
-                </div>
+                <!-- Contact Form -->
+                <div class="contact-form-container">
+                    <form action="https://formsubmit.co/tmogwere09@gmail.com" method="POST" class="contact-form">
+                        <input type="hidden" name="_subject" value="Web Developer Inquiry - Portfolio Contact" />
+                        <input type="hidden" name="_captcha" value="false" />
+                        <input type="hidden" name="_next" value="https://tmogwere.vercel.app/thankyou.html" />
 
-                <div>
-                  <label for="message" class="block text-white font-medium mb-2"
-                    >Message</label
-                  >
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="6"
-                    placeholder="Tell me about your project, requirements, timeline, and how I can help..."
-                    required
-                    class="w-full p-4 rounded-lg border border-dark-600 bg-dark-800/50 text-white placeholder-dark-400 transition-all duration-300 focus:outline-none focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20 resize-none"
-                  ></textarea>
-                </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Full Name</label>
+                                <input type="text" id="name" name="name" placeholder="Your full name" required class="form-input" />
+                            </div>
 
-                <button
-                  type="submit"
-                  class="w-full bg-gradient-primary text-white py-4 px-8 rounded-lg font-semibold text-lg transition-all duration-300 hover:shadow-glow-lg hover:-translate-y-1"
-                >
-                  Send Message
-                </button>
-              </form>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="your.email@example.com" required class="form-input" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project discussion, job opportunity, consultation..." required class="form-input" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="6" placeholder="Tell me about your project, requirements, timeline, and how I can help..." required class="form-textarea"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-dark-900 border-t border-dark-800 py-12">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="mb-6 md:mb-0">
-            <div class="text-2xl font-bold text-gradient mb-2">
-              Tshireletso Mogwere
-            </div>
-            <div class="text-dark-400">Web Developer</div>
-          </div>
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="images/logo-t.png" alt="Logo" class="footer-logo" />
+        <div class="footer-title">Web Developer</div>
+        <p class="footer-message">Let’s build something great together!</p>
+      </div>
 
-          <div class="flex items-center space-x-6">
-            <a
-              href="https://www.linkedin.com/in/tshireletsomogwere/"
-              target="_blank"
-              class="text-dark-400 hover:text-primary-400 transition-colors duration-300"
-            >
-              LinkedIn
+      <div class="footer-links">
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/tshireletsomogwere/" target="_blank" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
             </a>
-            <a
-              href="https://github.com/TshireletsoMogwere"
-              target="_blank"
-              class="text-dark-400 hover:text-primary-400 transition-colors duration-300"
-            >
-              GitHub
+            <a href="https://github.com/TshireletsoMogwere" target="_blank" aria-label="GitHub">
+              <i class="fab fa-github"></i>
             </a>
-            <div class="text-dark-600">|</div>
-            <div class="text-dark-400 text-sm">
-              &copy; 2025 All rights reserved
-            </div>
+            <a href="mailto:youremail@example.com" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Tshireletso Mogwere. All rights reserved.
+    </div>
+  </div>
+</footer>
 
     <script>
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+        
+const row = document.querySelector('#skillsRow .skills-row');
+let direction = 1;
+let position = 0;
+
+function animate() {
+  const maxScroll = row.scrollWidth - row.parentElement.clientWidth;
+
+  position += direction * 0.5; // Speed
+  if (position >= maxScroll) {
+    direction = -1;
+  } else if (position <= 0) {
+    direction = 1;
+  }
+
+  row.style.transform = `translateX(${-position}px)`;
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute("href"));
+                if (target) {
+                    // Calculate the position to scroll to, accounting for the fixed header
+                    const headerHeight = document.querySelector('.main-nav').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20; // 20px extra spacing
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
-          }
-        });
-      });
-
-      // Intersection Observer for animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      // Observe all sections
-      document.querySelectorAll(".section-enter").forEach((section) => {
-        observer.observe(section);
-      });
-
-      // Add active state to navigation
-      window.addEventListener("scroll", () => {
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-        let current = "";
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          const sectionHeight = section.clientHeight;
-          if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute("id");
-          }
         });
 
-        navLinks.forEach((link) => {
-          link.classList.remove("text-primary-400");
-          if (link.getAttribute("href") === `#${current}`) {
-            link.classList.add("text-primary-400");
-          }
-        });
-      });
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px",
+        };
 
-      // Add parallax effect to hero background
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector("#home");
-        if (hero) {
-          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with animation classes
+        document.querySelectorAll(".section-enter").forEach((section) => {
+            observer.observe(section);
+        });
+
+        // Add active state to navigation
+        window.addEventListener("scroll", () => {
+            const sections = document.querySelectorAll("section[id]");
+            const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+            const headerHeight = document.querySelector('.main-nav').offsetHeight;
+
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - headerHeight - 100) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+  // Mobile menu toggle functionality
+document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('show');
+    
+    // Toggle aria-expanded attribute for accessibility
+    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', !isExpanded);
+});
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+            document.getElementById('mobileMenuBtn').setAttribute('aria-expanded', 'false');
         }
-      });
+    });
+});
 
-      // Animate skill badges on scroll
-      const skillBadges = document.querySelectorAll(".skill-badge");
-      const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.style.opacity = "1";
-              entry.target.style.transform = "translateY(0)";
-            }, index * 100);
-          }
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const navLinks = document.getElementById('navLinks');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    
+    if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target) && navLinks.classList.contains('show')) {
+        navLinks.classList.remove('show');
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
+});
+        // Animate skill badges on scroll
+        const skillBadges = document.querySelectorAll(".skill-card");
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        skillBadges.forEach((badge) => {
+            badge.style.opacity = "0";
+            badge.style.transform = "translateY(20px)";
+            badge.style.transition = "all 0.6s ease";
+            skillObserver.observe(badge);
         });
-      }, observerOptions);
 
-      skillBadges.forEach((badge) => {
-        badge.style.opacity = "0";
-        badge.style.transform = "translateY(20px)";
-        badge.style.transition = "all 0.6s ease";
-        skillObserver.observe(badge);
-      });
+        // Add typing effect to main heading
+        const mainHeadings = document.querySelectorAll(".hero-title");
+        if (mainHeadings.length > 0) {
+            const text1 = mainHeadings[0].innerHTML;
+            const text2 = mainHeadings[1].innerHTML;
+            mainHeadings[0].innerHTML = "";
+            mainHeadings[1].innerHTML = "";
+            let i = 0;
 
-      // Add typing effect to main heading
-      const mainHeading = document.querySelector("h1");
-      if (mainHeading) {
-        const text = mainHeading.innerHTML;
-        mainHeading.innerHTML = "";
-        let i = 0;
+            function typeWriter() {
+                if (i < text1.length) {
+                    mainHeadings[0].innerHTML += text1.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                } else if (i === text1.length) {
+                    // Start typing the second heading after the first is done
+                    i++;
+                    typeWriter2();
+                }
+            }
 
-        function typeWriter() {
-          if (i < text.length) {
-            mainHeading.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-          }
+            function typeWriter2() {
+                const j = i - text1.length - 1;
+                if (j < text2.length) {
+                    mainHeadings[1].innerHTML += text2.charAt(j);
+                    i++;
+                    setTimeout(typeWriter2, 50);
+                }
+            }
+
+            setTimeout(typeWriter, 1000);
         }
-
-        setTimeout(typeWriter, 1000);
-      }
     </script>
-  </body>
+</body>
 </html>
